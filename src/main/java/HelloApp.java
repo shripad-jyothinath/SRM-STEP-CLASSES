@@ -1,24 +1,26 @@
 public class HelloApp {
 
     public static void main(String[] args) {
-        String greetingName;
+        // Variable to hold the final name list
+        String result;
 
+        // Check if the user actually passed any arguments
         if (args.length == 0) {
-            greetingName = "World";
+            result = "World";
         } else {
-            StringBuilder nameBuilder = new StringBuilder();
-            boolean first = true;
+            StringBuilder builder = new StringBuilder();
             
+            // Loop through every name and add a comma/space after each one
             for (String name : args) {
-                if (!first) {
-                    nameBuilder.append(", ");
-                }
-                nameBuilder.append(name);
-                first = false;
+                builder.append(name).append(", ");
             }
-            greetingName = nameBuilder.toString();
+            
+            // Cleanup: remove the very last ", " (2 characters) from the end
+            // We use substring from index 0 to (total length - 2)
+            result = builder.substring(0, builder.length() - 2);
         }
 
-        System.out.println("Hello, " + greetingName + "!");
+        // Print the final personalized greeting
+        System.out.println("Hello, " + result + "!");
     }
 }
